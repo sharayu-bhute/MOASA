@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clinic Queue</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Patient Registration</h2>
+    <form method="POST">
+        Name: <input type="text" name="name" required><br>
+        Age: <input type="number" name="age" required><br>
+        Disease: <input type="text" name="disease" required><br>
+        Severity: 
+        <select name="severity">
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+        </select><br>
+        Visit Type:
+        <select name="visit">
+            <option>New</option>
+            <option>Followup</option>
+        </select><br>
+        Symptoms Count: <input type="number" name="symptoms_count" required><br>
+        Phone (optional): <input type="text" name="phone"><br>
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="refresh" content="5">
+    <title>Doctor Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Doctor Dashboard</h2>
+
+    <h3>Current Patient</h3>
+    {% if current_patient %}
+        <p>Token: {{ current_patient.token }} | Name: {{ current_patient.name }} | Status: {{ current_patient.status }}</p>
+    {% else %}
+        <p>No active consultation</p>
+    {% endif %}
+
+    <form method="POST">
+        <button name="start">Start Consultation</button>
+        <button name="end">End Consultation</button>
+    </form>
+
+    <h3>Queue</h3>
+    <table border="1">
+        <tr>
+            <th>Token</th><th>Name</th><th>Start</th><th>End</th><th>Status</th>
+        </tr>
+        {% for p in queue %}
+        <tr>
+            <td>{{ p.token }}</td>
+            <td>{{ p.name }}</td>
+            <td>{{ p.start_time.strftime('%H:%M') }}</td>
+            <td>{{ p.end_time.strftime('%H:%M') }}</td>
+            <td>{{ p.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Add Break</h3>
+    <form method="POST">
+        Break Time: <input type="time" name="break_time" required>
+        Duration (minutes): <input type="number" name="duration" required>
+        <button name="break">Add Break</button>
+    </form>
+</body>
+</html>
